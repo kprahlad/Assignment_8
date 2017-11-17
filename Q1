@@ -1,0 +1,96 @@
+#include<iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node *next;
+};
+class LL{
+    public:
+    Node *front,*rear;
+    LL(){front=rear=NULL;}
+ 
+    void add(int n);
+    void deleteitem();
+    void display();
+    void insnode();
+};
+ 
+void LL::add(int n){
+    Node *temp=new Node;
+    if(temp==NULL){
+        cout<<"Overflow"<<endl;
+        return;
+    }
+    temp->data=n;
+    temp->next=NULL;
+    if(front==NULL){
+        front=rear=temp;
+    }
+    else{
+        rear->next=temp;
+        rear=temp;
+    }
+    cout<<n<<" has been inserted successfully."<<endl;
+}
+ 
+void LL::display(){
+    if(front==NULL){
+        cout<<"Underflow."<<endl;
+        return;
+    }
+    Node *temp=front;
+    while(temp){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+ 
+void LL :: deleteitem()
+    {
+    if (front==NULL){
+        cout<<"underflow"<<endl;
+        return;
+    }
+     
+    cout<<front->data<<" is being deleted "<<endl;
+    if(front==rear)//if only one node is there
+        front=rear=NULL;
+    else
+        front=front->next;
+}
+void LL::insnode()
+{
+	node *temp = new Node;
+	if(front==NULL) cout<<"\nUnderflow";
+	if(temp==NULL) cout<<"\nOverflow!";
+	else
+	{
+		cout<<"\nEnter data : ";
+		cin>>temp->data;
+		int dat;
+		cout<<"Enter the data after which this has to be inserted : ";
+		cin>>dat;
+		temp->next=NULL;
+    int flag=1;
+		for(node *p=front;p!=NULL&&flag;p=p->next)
+		{
+			if(p->data==dat)
+			{
+				temp->next=p->next;
+				p->next=temp;
+        flag=0;
+			} 
+		}
+		cout<<"\nNode has been added!";
+	}
+} 
+int main ()
+{
+  LL ob;
+  ob.add(10);
+  ob.add(100);
+  ob.deleteitem();
+  ob.insnode();
+  ob.display();
+}
